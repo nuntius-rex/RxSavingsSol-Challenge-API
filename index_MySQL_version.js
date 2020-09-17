@@ -70,5 +70,5 @@ http.createServer(function(req, res){
 }).listen(port);
 
 console.log(`Listening on http://localhost:${port}
-Sample Test: http://localhost:3000/?lat=38.887844&lng=-94.851011
+Sample Test: http://localhost:3001/?lat=38.887844&lng=-94.851011
 `);

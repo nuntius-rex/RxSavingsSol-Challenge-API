@@ -8,7 +8,7 @@ Single Endpoint Lat-Lng API
 
 >MySQL Example - This example is intended to show how a service could be setup for a larger collection of data. The logic for determining distance here is done via the SQL statement.
 
->Notes: In the _requirements folder, I have included my notes, so that you can see a bit of my research. 
+>Notes: In the _requirements folder, I have included my notes, so that you can see a bit of my research.
 
 ## Base Install
 
@@ -53,4 +53,4 @@ node index_MySQL_version.js
 
 It should then be viewable at http://localhost:3001.
 
-Sample Test: http://localhost:3000/?lat=38.887844&lng=-94.851011
+Sample Test: http://localhost:3001/?lat=38.887844&lng=-94.851011
