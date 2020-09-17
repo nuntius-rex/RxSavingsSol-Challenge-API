@@ -4,7 +4,7 @@ Single Endpoint Lat-Lng API
 
 >This repository contains two examples, a version using a simple JSON file as a data source and a version using MySQL as a data source.
 
->JSON File Example - This example is intended to show how a service could be setup for a small collection of data, like the one provided. The logic here for determining distance is done with JavaScript alone. This is probably not a best long-term solution, per best practice, especially if the data were to grow. In such case, a SQl database or No-SQl solution would be desired. Thus, my reasoning for providing a second example:
+>JSON File Example - This example is intended to show how a service could be setup for a small collection of data, like the one provided. The logic here for determining distance is done with JavaScript alone. This is probably not a best long-term solution in most cases, per best practice, especially if the data were to grow. In such case, a SQL database or No-SQL solution would be desired. Thus, my reasoning for providing a second example:
 
 >MySQL Example - This example is intended to show how a service could be setup for a larger collection of data. The logic for determining distance here is done via the SQL statement.
 
@@ -51,6 +51,6 @@ The "npm install" command you ran earlier will have installed the node mysql lib
 node index_MySQL_version.js
 ```
 
-It should then be viewable at http://localhost:3001.
+It should then be viewable at http://localhost:3001 (ON A DIFFERENT PORT SHOULD YOU WISH TO COMPARE OUTPUT).
 
 Sample Test: http://localhost:3001/?lat=38.887844&lng=-94.851011

@@ -36,9 +36,11 @@ with an appropriate formula that resulted in the following notes:
     https://www.movable-type.co.uk/scripts/gis-faq-5.1.html
 
     //I ended up duplicating this formula in my JSON File example with JavaScript:
-    3963.0 * arccos[sin(lat1/57.2958) * sin(lat2/57.2958) + cos(lat1/57.2958) * cos(lat2/57.2958) *  cos(lon2/57.2958 -lon1/57.2958)]
+    3963.0 * arccos[sin(lat1/57.2958) * sin(lat2/57.2958)
+    + cos(lat1/57.2958) * cos(lat2/57.2958) *  cos(lon2/57.2958 -lon1/57.2958)]
 
     https://stackoverflow.com/questions/574691/mysql-great-circle-distance-haversine-formula
+    Note that the global radius is not correct!!!
 
     SELECT id, ( 3959 * acos( cos( radians(37) ) * cos( radians( lat ) )
     * cos( radians( lng ) - radians(-122) ) + sin( radians(37) ) * sin(radians(lat)) ) ) AS distance
@@ -47,10 +49,26 @@ with an appropriate formula that resulted in the following notes:
     ORDER BY distance
     LIMIT 0 , 20;
 
-    //Here is my query using my home lat/lng that I eventually used in the MySQL example.
+    //This is my first query using my home lat/lng that I eventually used in the MySQL example.
     SELECT name, address, city, state, zip, latitude, longitude,
     ( 3959 * acos( cos( radians(38.887844) ) * cos( radians( latitude ) )
     * cos( radians( longitude ) - radians(-94.851011) ) + sin( radians(38.887844) ) * sin(radians(latitude)) ) ) AS distance
+    FROM pharmacies
+    HAVING distance < 100
+    ORDER BY distance
+    LIMIT 1;
+
+    Per my test: http://localhost:3001/?lat=38.887844&lng=-94.851011
+    This comes back with 11.075346289740825
+    Confirming the calculation in Excel, the 11.08653453773223 value in the JSON version is accurate.
+
+    //I finally changed the SQL to match my JSON version:
+    SELECT name, address, city, state, zip, latitude, longitude,
+    ( 3963.0 * acos(
+      sin(latitude/57.2958) * sin(${lat}/57.2958)
+      +cos(latitude/57.2958) * cos(${lat}/57.2958)
+      *cos(${lng}/57.2958 -longitude/57.2958)
+    ) ) AS distance
     FROM pharmacies
     HAVING distance < 100
     ORDER BY distance

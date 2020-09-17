@@ -8,7 +8,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/nuntius-rex/lat-long-api.git"
+    "url": "git+https://github.com/nuntius-rex/RxSavingsSol-Challenge-API.git"
   },
   "keywords": [
     "latitude",
@@ -18,9 +18,9 @@
   "author": "Dan Guinn",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/nuntius-rex/lat-long-api/issues"
+    "url": "https://github.com/nuntius-rex/RxSavingsSol-Challenge-API/issues"
   },
-  "homepage": "https://github.com/nuntius-rex/lat-long-api#readme",
+  "homepage": "https://github.com/nuntius-rex/RxSavingsSol-Challenge-API#readme",
   "dependencies": {
     "mysql": "^2.18.1"
   }

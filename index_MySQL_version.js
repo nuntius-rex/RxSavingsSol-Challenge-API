@@ -10,6 +10,7 @@ var con = mysql.createConnection({
     database: "YOUR_DATABASE"
 });
 
+
 con.connect(function(error){
   if(error){
     console.log("Unable to connect");
@@ -28,21 +29,13 @@ http.createServer(function(req, res){
   //If parameters are not empty proceed:
   if(lat!==undefined && lng!==undefined){
 
-/*
-      //An Approximate version in SQL (see notes.txt):
-      let sql=`
-          SELECT name, address, city, state, zip, latitude, longitude, SQRT(
-          POW(69.1 * (latitude - ${lat}), 2) +
-          POW(69.1 * (${lng} - longitude) * COS(latitude / 57.3), 2)) AS distance
-          FROM pharmacies HAVING distance < 100 ORDER BY distance LIMIT 1;
-      `;
-*/
-      //Great Circle Distance Formula in SQL:
       let sql=`
         SELECT name, address, city, state, zip, latitude, longitude,
-        ( 3959 * acos( cos( radians(${lat}) ) * cos( radians( latitude ) )
-        * cos( radians( longitude ) - radians(${lng}) )
-        + sin( radians(${lat}) ) * sin(radians(latitude)) ) ) AS distance
+        ( 3963.0 * acos(
+          sin(latitude/57.2958) * sin(${lat}/57.2958)
+          +cos(latitude/57.2958) * cos(${lat}/57.2958)
+          *cos(${lng}/57.2958 -longitude/57.2958)
+        ) ) AS distance
         FROM pharmacies
         HAVING distance < 100
         ORDER BY distance
@@ -55,8 +48,10 @@ http.createServer(function(req, res){
         if(error){
           console.log("Unable to get results");
         }else{
-          console.log("Sending stringified result:\n"+JSON.stringify(result));
-          res.end(JSON.stringify(result));
+          //Note: Even though the result is a single item,
+          //just send the first element result[0]
+          console.log("Sending stringified result:\n"+JSON.stringify(result[0]));
+          res.end(JSON.stringify(result[0]));
         }
       });
 
