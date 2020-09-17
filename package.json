@@ -1,7 +1,7 @@
 {
-  "name": "lat-lng-api",
+  "name": "RxSavingsSol-Challenge-API",
   "version": "1.0.0",
-  "description": "Lat-Long locator to find nearest pharmacy",
+  "description": "Lat-Lng locator to find nearest pharmacy",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
