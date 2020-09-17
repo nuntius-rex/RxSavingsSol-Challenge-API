@@ -8,6 +8,8 @@ Single Endpoint Lat-Lng API
 
 >MySQL Example - This example is intended to show how a service could be setup for a larger collection of data. The logic for determining distance here is done via the SQL statement.
 
+>Notes: In the _requirements folder, I have included my notes, so that you can see a bit of my research. 
+
 ## Base Install
 
 In a directory desired, clone this repository and run the install using the command line:
@@ -27,16 +29,17 @@ node index_JSONFILE_version.js
 ```
 
 It should then be viewable at http://localhost:3000.
+
 Sample Test: http://localhost:3000/?lat=38.887844&lng=-94.851011
 
 ### Setting Up and Running the MySQL Version
 
-Using a MySQL client, create a database and run the pharmacies.sql script from the _requirements folder to setup the relevant "pharmacies" table. In the index_MySQL_version.js file, you will need to change the password and database name to match the database and your connection credentials. This will be located at the top of the index_MySQL_version.js script.
+Using a MySQL client, create a database and run the pharmacies.sql script from the _requirements folder to setup the relevant "pharmacies" table. In the index_MySQL_version.js file, you will need to change the credentials, such as the username, password and database name to match the database and your connection credentials. This will be located at the top of the index_MySQL_version.js script.
 
 ```
 var con = mysql.createConnection({
     host: "localhost",
-    user: "root",
+    user: "YOUR_USERNAME",
     password: "YOUR_PASSWORD",
     database: "YOUR_DATABASE"
 });
@@ -49,4 +52,5 @@ node index_MySQL_version.js
 ```
 
 It should then be viewable at http://localhost:3001.
+
 Sample Test: http://localhost:3000/?lat=38.887844&lng=-94.851011
