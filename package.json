@@ -4,8 +4,7 @@
   "description": "Lat-Long locator to find nearest pharmacy",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "nodemon index_JSONFILE_version.js"
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
@@ -23,7 +22,6 @@
   },
   "homepage": "https://github.com/nuntius-rex/lat-long-api#readme",
   "dependencies": {
-    "mysql": "^2.18.1",
-    "nodemon": "^2.0.4"
+    "mysql": "^2.18.1"
   }
 }

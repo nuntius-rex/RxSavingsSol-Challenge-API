@@ -1,13 +1,13 @@
 const http = require("http");
 const url = require('url');
-const port=3000;
+const port=3001;
 const fs = require('fs');
 const mysql = require('mysql');
 var con = mysql.createConnection({
     host: "localhost",
     user: "root",
-    password: "1lex2admit",
-    database: "rxsavings"
+    password: "YOUR_PASSWORD",
+    database: "YOUR_DATABASE"
 });
 
 con.connect(function(error){
