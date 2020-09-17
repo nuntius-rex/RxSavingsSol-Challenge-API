@@ -54,3 +54,36 @@ node index_MySQL_version.js
 It should then be viewable at http://localhost:3001 (ON A DIFFERENT PORT SHOULD YOU WISH TO COMPARE OUTPUT).
 
 Sample Test: http://localhost:3001/?lat=38.887844&lng=-94.851011
+
+### Output
+
+Both examples output a JSON Object response packet, that should look like the following example, but in string format. If viewing with Chrome Developer Tools, the JSON will parse in the Network->Preview tab.
+
+```
+{
+  "name":"CVS PHARMACY",
+  "address":"5001 WEST 135 ST",
+  "city":"LEAWOOD",
+  "state":"KS",
+  "zip":66224,
+  "latitude":38.88323,
+  "longitude":-94.64518,
+  "distance":11.086534537889506
+}
+```
+
+### Error
+
+If called without parameters, localhost:3000 will display the following error in JSON:
+
+```
+{"error":"Sorry, your request must include lat and lng parameters."}
+```
+
+### Consuming the Response
+
+Front-End applications will consume the JSON response by parsing the object from string format into a valid JavaScript object with something like the following (where using standard JavaScript/AJAX and processing responseText):
+
+```
+let locationObj=JSON.parse(response);
+```

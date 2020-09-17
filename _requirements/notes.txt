@@ -40,7 +40,7 @@ with an appropriate formula that resulted in the following notes:
     + cos(lat1/57.2958) * cos(lat2/57.2958) *  cos(lon2/57.2958 -lon1/57.2958)]
 
     https://stackoverflow.com/questions/574691/mysql-great-circle-distance-haversine-formula
-    Note that the global radius is not correct!!!
+    Note that the global radius is not correct in this example!!!
 
     SELECT id, ( 3959 * acos( cos( radians(37) ) * cos( radians( lat ) )
     * cos( radians( lng ) - radians(-122) ) + sin( radians(37) ) * sin(radians(lat)) ) ) AS distance
@@ -77,3 +77,8 @@ with an appropriate formula that resulted in the following notes:
 
 3) Also stumbled upon ST_Distance_Sphere() for MySQL, but did not use
     https://tighten.co/blog/a-mysql-distance-function-you-should-know-about/
+
+Conclusion:
+
+In my opinion, how you research is nearly as valuable as how you code. I was able to research both formula for distance and stumbled across limited query code examples to discover how I might want to implement the formula.
+However, the most significant was understanding the formula itself and then coding my own version in JavaScript and then finally in my SQl query as well.     
