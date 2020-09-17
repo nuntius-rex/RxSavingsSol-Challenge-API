@@ -1,0 +1,29 @@
+{
+  "name": "lat-lng-api",
+  "version": "1.0.0",
+  "description": "Lat-Long locator to find nearest pharmacy",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon index_JSONFILE_version.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nuntius-rex/lat-long-api.git"
+  },
+  "keywords": [
+    "latitude",
+    "longitude",
+    "pharmacy"
+  ],
+  "author": "Dan Guinn",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/nuntius-rex/lat-long-api/issues"
+  },
+  "homepage": "https://github.com/nuntius-rex/lat-long-api#readme",
+  "dependencies": {
+    "mysql": "^2.18.1",
+    "nodemon": "^2.0.4"
+  }
+}

@@ -1,0 +1,61 @@
+
+Since often I use various mapping apis that will locate relevant distance, I researched doing this
+with an appropriate formula that resulted in the following notes:
+
+1) During the process of researching the math, I discovered a query to get Approximate distance in miles:
+
+    //Found a MySQL query:
+    https://www.petefreitag.com/item/622.cfm
+    //Recommended here:
+    https://intellipaat.com/community/10373/latitude-longitude-find-nearest-latitude-longitude-complex-sql-or-complex-calculation
+
+    SELECT latitude, longitude, SQRT(
+    POW(69.1 * (latitude - [startlat]), 2) +
+    POW(69.1 * ([startlng] - longitude) * COS(latitude / 57.3), 2)) AS distance
+    FROM TableName HAVING distance < 25 ORDER BY distance;
+
+
+    //The petefeitag.com site references that his query was based on math here (site now archived):
+    https://web.archive.org/web/20180629232851/http://www.meridianworlddata.com/distance-calculation/
+
+    Approximate distance in miles:
+    sqrt(x * x + y * y)
+    where x = 69.1 * (lat2 – lat1)
+    and y = 69.1 * (lon2 – lon1) * cos(lat1/57.3
+
+
+    //Here is my query using my home lat/lng:
+    SELECT name, address, city, state, zip, latitude, longitude, SQRT(
+    POW(69.1 * (latitude - 38.887844), 2) +
+    POW(69.1 * (-94.851011 - longitude) * COS(latitude / 57.3), 2)) AS distance
+    FROM pharmacies HAVING distance < 100 ORDER BY distance LIMIT 1;
+
+2) Many other examples were later found that use the "Great Circle Distance Formula":
+
+    http://www.geosats.com/0x2circ.html
+    https://www.movable-type.co.uk/scripts/gis-faq-5.1.html
+
+    3963.0 * arccos[sin(lat1/57.2958) * sin(lat2/57.2958) + cos(lat1/57.2958) * cos(lat2/57.2958) *  cos(lon2/57.2958 -lon1/57.2958)]
+
+    https://stackoverflow.com/questions/574691/mysql-great-circle-distance-haversine-formula
+
+    SELECT id, ( 3959 * acos( cos( radians(37) ) * cos( radians( lat ) )
+    * cos( radians( lng ) - radians(-122) ) + sin( radians(37) ) * sin(radians(lat)) ) ) AS distance
+    FROM markers
+    HAVING distance < 25
+    ORDER BY distance
+    LIMIT 0 , 20;
+
+    //Here is my query using my home lat/lng
+    SELECT name, address, city, state, zip, latitude, longitude,
+    ( 3959 * acos( cos( radians(38.887844) ) * cos( radians( latitude ) )
+    * cos( radians( longitude ) - radians(-94.851011) ) + sin( radians(38.887844) ) * sin(radians(latitude)) ) ) AS distance
+    FROM pharmacies
+    HAVING distance < 100
+    ORDER BY distance
+    LIMIT 1;
+
+
+3) Also stumbled upon ST_Distance_Sphere() for MySQL, but did not use
+
+https://tighten.co/blog/a-mysql-distance-function-you-should-know-about/
