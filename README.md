@@ -1,4 +1,4 @@
-# RxSavingsSol-Challenge-API
+# Latitude & Longitude Lookup API
 
 Single Endpoint Lat-Lng API
 
